@@ -35,6 +35,19 @@ ggplot(girona.diari.m, aes(dia, value, color = variable, group = variable)) + ge
         legend.title = element_text(face = "bold"), panel.background = element_rect(fill = NA), legend.key = element_rect(fill = NA), 
         legend.background = element_rect(fill = NA)) +labs(title = "Evolucio COVID19 - Regio Girona (diaris)",  x = NULL, y = "# totals", colour = "Variable")
 
+# previsions
+girona.prev <- girona[, names(girona) %in% c('dia', 'nous', 'infectats.ratio07', 'infectats.ratio1', 'infectats.ratio15', 
+                                             'infectats.ratio2', 'infectats.ratio3', 'infectats.ratio6')]
+girona.prev.m <- melt(girona.prev)
+ggplot(girona.prev.m, aes(dia, value, color = variable, group = variable)) + geom_point() + geom_line() +
+  scale_color_manual(labels = c('Publicats', 'Letalitat 0.7%', 'Letalitat 1%', 'Letalitat 1.5%', 'Letalitat 2%', 'Letalitat 3%', 'Letalitat 6%'),
+                     values = c('black', 'darkred', '#CC0000', '#FF0000', '#FF3333', '#FF6666', '#FF9999')) +
+  theme(plot.subtitle = element_text(vjust = 1), plot.caption = element_text(vjust = 1), axis.line = element_line(size = 0.4, linetype = "solid"), 
+        panel.grid.major = element_line(colour = "gray95", linetype = "dashed"), axis.text = element_text(face = "bold"), 
+        axis.text.x = element_text(vjust = 0.5, angle = 90), legend.text = element_text(face = "bold"), 
+        legend.title = element_text(face = "bold"), panel.background = element_rect(fill = NA), legend.key = element_rect(fill = NA), 
+        legend.background = element_rect(fill = NA)) +labs(title = "Evolucio COVID19 - Regio Girona (prediccio segons letalitat)",  x = NULL, y = "# totals", colour = "Variable")
+
 # ratios
 girona.ratios <- girona[, names(girona) %in% c('dia', 'increment.dia', 'sanitaris.percent')]
 girona.ratios.m <-  melt(girona.ratios)
