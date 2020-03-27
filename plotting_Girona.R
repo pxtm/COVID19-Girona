@@ -36,7 +36,8 @@ ggplot(girona.total.m, aes(dia, log10(value), color = variable, group = variable
 # diari
 girona.diari <- girona[, names(girona) %in% c('dia', 'nous', 'sanitaris.dia', 'nosanitaris.dia', 'greus.dia', 'morts.dia', 'altes.dia')]
 girona.diari.m <- melt(girona.diari)
-ggplot(girona.diari.m, aes(dia, value, color = variable, group = variable)) + geom_point() + geom_line() +
+girona.diari.m <- melt(girona.diari)
+ggplot(girona.diari.m, aes(dia, value, color = variable, group = variable)) + geom_point() + geom_line() + #geom_col (position = 'dodge') +
   # scale_color_manual() +
   theme(plot.subtitle = element_text(vjust = 1), plot.caption = element_text(vjust = 1), axis.line = element_line(size = 0.4, linetype = "solid"), 
         panel.grid.major = element_line(colour = "gray95", linetype = "dashed"), axis.text = element_text(face = "bold"), 
